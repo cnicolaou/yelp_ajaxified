@@ -4,14 +4,15 @@
 
   <div class="panel panel-default">
     <div class="panel-heading">
-      <h2>
-        <%= pluralize @restaurant.reviews.size, "review" %>
+      <h2 id="reviews_title">
+        <%= render "reviews/title", restaurant: @restaurant %>
       </h2>
     </div>
     <div class="panel-body">
+      <!-- display reviews -->
       <div id="reviews">
         <% if @restaurant.reviews.blank? %>
-          Be the first to leave a review for <%= @restaurant.name %>
+          <span id="leave_a_review">Be the first to leave a review for <%= @restaurant.name %></span>
         <% else %>
           <% @restaurant.reviews.each do |review| %>
             <%= render 'reviews/show', review: review %>
@@ -20,4 +21,8 @@
       </div>
     </div>
   </div>
+
+  <br/>
+  <!-- Form for reviews -->
+  <%= render 'reviews/form', restaurant: @restaurant, review: @review %>
 </div>
